@@ -1,6 +1,6 @@
 .container {
   width: 75%;
-  background-color: blanchedalmond;
+  background-color: rgb(226, 204, 225);
 }
 
 .useravatar {
@@ -16,8 +16,17 @@
   border: 1px solid black;
   margin: 5px;
   border-radius: 3px;
+  transition: box-shadow 0.3s, background-color 1s ease, border 1s ease,
+    padding 0.5s ease, margin 0.5s ease;
 }
 
+.msg:hover {
+  box-shadow: 6px 8px 10px rgb(209, 110, 245);
+  background-color: rgb(237, 226, 255);
+  border: 2px solid black;
+  padding: 15px;
+  margin: 0 5 px;
+}
 .msg p {
   margin: 2px;
   border: 1px sold black;
