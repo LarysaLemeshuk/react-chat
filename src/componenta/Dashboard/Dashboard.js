@@ -4,6 +4,7 @@ import Chat from '../Chat/Chat';
 import MessageArea from '../MessageArea/MessageArea';
 import styles from './Dashboard.module.css';
 import UserContext from '../../contexts/UserContext';
+import MessageContext from '../../contexts/MessageContext';
 import { getMessages } from '../../Api';
 import CONSTANTS from '../../constants';
 import messageReducer from '../../reducers/messageReducer';
@@ -54,16 +55,30 @@ const Dashboard = () => {
     });
   };
 
+  const deleteMessage = (id) => {
+    dispatch({
+      type: ACTIONS.DELETE_MESSAGE,
+      payload: id,
+    });
+  };
+
   return (
-    <UserContext.Provider value={user}>
-      <main className={styles.container}>
-        <DialogList />
-        <section className={styles.wrapper}>
-          <Chat dashboardState={state} />
-          <MessageArea sendMessage={createMessage} />
-        </section>
-      </main>
-    </UserContext.Provider>
+    <MessageContext.Provider
+      value={{
+        messageState: state,
+        deleteMessage,
+      }}
+    >
+      <UserContext.Provider value={user}>
+        <main className={styles.container}>
+          <DialogList />
+          <section className={styles.wrapper}>
+            <Chat />
+            <MessageArea sendMessage={createMessage} />
+          </section>
+        </main>
+      </UserContext.Provider>
+    </MessageContext.Provider>
   );
 };
 

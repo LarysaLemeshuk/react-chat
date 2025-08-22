@@ -26,10 +26,20 @@ function messageReducer(state, action) {
     }
     case ACTIONS.ADD_NEW_MESSAGE: {
       const { payload: newMessage } = action;
-      const newMessagesArray = [...state.message, newMessage];
+      const newMessagesArray = [...state.messages, newMessage];
       return {
         ...state,
         messages: newMessagesArray,
+      };
+    }
+    case ACTIONS.DELETE_MESSAGE: {
+      const { payload: deleteMessageId } = action;
+      const filteredMessage = state.messages.filter(
+        (currentMessage) => currentMessage.id !== deleteMessageId
+      );
+      return {
+        ...state,
+        messages: filteredMessage,
       };
     }
     default:

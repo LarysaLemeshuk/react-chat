@@ -7,6 +7,7 @@ const MessageArea = (props) => {
   const changeHandler = ({ target: { value } }) => {
     setInputMessage(value);
   };
+  
   const submitHandler = (event) => {
     event.preventDefault();
     props.sendMessage(inputMessage);
